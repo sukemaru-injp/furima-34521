@@ -2,21 +2,21 @@
 
 ## users
 
-| column                 | type          | option      |
-| ---------------------- | ------------- | ----------- |
-| nickname               | string        | null: false |
-| email                  | string        | null: false |
-| password               | string        | null: false |
-| password-confirmation  | string        | null: false |
-| family_name            | string        | null: false |
-| first_name             | string        | null: false |
-| family_name_kana       | string        | null: false |
-| first_name_kana        | string        | null: false |
-| birthday               | date          | null: false |
+| column                 | type          | option                    |
+| ---------------------- | ------------- | ------------------------- |
+| nickname               | string        | null: false               |
+| email                  | string        | null: false, unique: true |
+| encrypted_password     | string        | null: false               |
+| password_confirmation  | string        | null: false               |
+| family_name            | string        | null: false               |
+| first_name             | string        | null: false               |
+| family_name_kana       | string        | null: false               |
+| first_name_kana        | string        | null: false               |
+| birthday               | date          | null: false               |
 
 ### association 
 - has_many :items
-- has_many :buys
+- has_many :gets
 
 ## items
 
@@ -31,13 +31,10 @@
 | days_to_ship           | integer       | null: false       |
 | price                  | integer       | null: false       |
 | user                   | references    | foreign_key: true |
-| sell                   | boolean       | default: false    |
 
 ### association
 
 - belongs_to :user
-- has_one :address
-- has_one :buy
 
 <!-- ActiveHashの使用↑↑↑ -->
 
@@ -45,28 +42,28 @@
 
 | column                 | type          | option            |
 | ---------------------- | ------------- | ----------------- |
-| postal_code            | integer       | null: false       |
+| postal_code            | string        | null: false       |
 | prefecture_id          | integer       | null: false       |
 | city                   | string        | null: false       |
 | address_name           | string        | null: false       |
-| building_name          | string        | null: false       |
-| phone_number           | integer       | null: false       |
-| item                   | references    | foreign_key: true |
+| building_name          | string        |                   |
+| phone_number           | string        | null: false       |
+| get                    | references    | foreign_key: true |
 
 ### association
 
-- belongs_to :item
+- belongs_to :gets
 
 ## gets
 
 | column                 | type          | option            |
 | ---------------------- | ------------- | ----------------- |
 | user                   | references    | foreign_key: true |
-| item                   | references    | foreign_key: true |
+| address                | references    | foreign_key: true |
 
 
 ### association
 
 - belongs_to :user
-- belongs_to :item
+- has_one :address
 

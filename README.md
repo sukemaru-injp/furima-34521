@@ -7,7 +7,6 @@
 | nickname               | string        | null: false               |
 | email                  | string        | null: false, unique: true |
 | encrypted_password     | string        | null: false               |
-| password_confirmation  | string        | null: false               |
 | family_name            | string        | null: false               |
 | first_name             | string        | null: false               |
 | family_name_kana       | string        | null: false               |
@@ -28,13 +27,14 @@
 | condition_id           | integer       | null: false       |
 | delivery_fee           | integer       | null: false       |
 | prefecture_id          | integer       | null: false       |
-| days_to_ship           | integer       | null: false       |
+| days_to_ship_id        | integer       | null: false       |
 | price                  | integer       | null: false       |
 | user                   | references    | foreign_key: true |
 
 ### association
 
 - belongs_to :user
+- has_one :get
 
 <!-- ActiveHashの使用↑↑↑ -->
 
@@ -52,18 +52,18 @@
 
 ### association
 
-- belongs_to :gets
+- belongs_to :get
 
 ## gets
 
 | column                 | type          | option            |
 | ---------------------- | ------------- | ----------------- |
 | user                   | references    | foreign_key: true |
-| address                | references    | foreign_key: true |
+| item                   | references    | foreign_key: true |
 
 
 ### association
 
 - belongs_to :user
-- has_one :address
+- belongs_to :item
 

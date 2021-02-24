@@ -97,6 +97,13 @@ RSpec.describe User, type: :model do
         expect(friend.errors.full_messages).to include("Email has already been taken")
       end
 
+      it "emailが＠を含まない場合登録できない" do
+        @user.email = "atest"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+
+
       # 正規表現test
 
       it "family_nameが英字では登録できない" do

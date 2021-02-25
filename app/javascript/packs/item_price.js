@@ -6,7 +6,7 @@ function price (){
     const salesCommission = Math.floor(inputValue * 0.1);
     const profit = Math.floor(inputValue * 0.9);
     
-    // 表示エリア
+    // 表示するエリア
     const commissionArea = document.getElementById("add-tax-price");
     const profitArea = document.getElementById("profit");
 

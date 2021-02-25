@@ -11,14 +11,18 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   
-  validates :name, :content, presence:true
-  validates :image, presence: true
-  validates :price, presence:true, inclusion: { in: 300..9999999 }
-
+  with_options presence: true do
+    validates :name
+    validates :content
+    validates :image
+    validates :price, inclusion: { in: 300..9999999 }
+  end
 # アクティブハッシュバリデーション
-  validates :category_id, numericality: { other_than: 1 }
-  validates :condition_id, numericality: { other_than: 1 }
-  validates :delivery_fee_id, numericality: { other_than: 1 }
-  validates :prefecture_id, numericality: { other_than: 1 }
-  validates :days_to_ship_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :condition_id
+    validates :delivery_fee_id
+    validates :prefecture_id
+    validates :days_to_ship_id
+  end
 end

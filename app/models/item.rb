@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   validates :name, :content, presence:true
   validates :image, presence: true
   # 価格の設定は後ほど
-  validates :price, presence:true
+  validates :price, presence:true, inclusion: { in: 300..9999999 }
 
 # アクティブハッシュバリデーション
   validates :category_id, numericality: { other_than: 1 }

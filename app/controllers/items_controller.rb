@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :update, :edit]
   before_action :set_item, only: [:show, :edit]
   before_action :move_to_index, only: [:edit]
 
@@ -27,6 +27,13 @@ class ItemsController < ApplicationController
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to "/items/#{@item.id}" 
+    else
+      render :edit
+    end
+
   end
   
 

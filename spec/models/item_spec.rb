@@ -26,31 +26,31 @@ RSpec.describe Item, type: :model do
       end
 
       it "categoryが1では登録できない" do
-        @item.category_id = "1"
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
 
-      it "conditionが空では登録できない" do
-        @item.condition_id = "1"
+      it "conditionが1では登録できない" do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
 
-      it "delivery_feeが空では登録できない" do
-        @item.delivery_fee_id = "1"
+      it "delivery_feeが1では登録できない" do
+        @item.delivery_fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
       end
 
-      it "prefectureが空では登録できない" do
-        @item.prefecture_id  = "1"
+      it "prefectureが1では登録できない" do
+        @item.prefecture_id  = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
 
-      it "days_to_shipが空では登録できない" do
-        @item.days_to_ship_id  = "1"
+      it "days_to_shipが1では登録できない" do
+        @item.days_to_ship_id  = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
       end

@@ -1,5 +1,6 @@
 class GetsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_to_root, only: [:index]
 
   def index
     @get_address = GetAddress.new
@@ -31,6 +32,13 @@ class GetsController < ApplicationController
       card: get_params[:token],
       currency: 'jpy'  
     )
+  end
+
+  def move_to_root
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
   end
 end
 

@@ -71,7 +71,6 @@ RSpec.describe GetAddress, type: :model do
   it "tokenが空では登録できないこと" do
     @get_address.token = nil
     @get_address.valid?
-    binding.pry
     expect(@get_address.errors.full_messages).to include("Token can't be blank")
   end
 

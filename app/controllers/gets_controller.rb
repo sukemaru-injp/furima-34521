@@ -1,6 +1,7 @@
 class GetsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :move_to_root, only: [:index]
+  before_action :sold_item, only: [:index]
 
   def index
     @get_address = GetAddress.new
@@ -40,5 +41,13 @@ class GetsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def sold_item
+    @item = Item.find(params[:item_id])
+    if Get.exists?(@item.id)
+      redirect_to root_path
+    end
+  end
+
 end
 

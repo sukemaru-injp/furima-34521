@@ -68,10 +68,30 @@ RSpec.describe GetAddress, type: :model do
     expect(@get_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
   end
 
+  it 'phone_numberが数字以外だと保存できないこと' do
+    @get_address.phone_number = 'aaaaaaa'
+    @get_address.valid?
+    expect(@get_address.errors.full_messages).to include("Phone number is invalid")
+  end
+
+
   it "tokenが空では登録できないこと" do
     @get_address.token = nil
     @get_address.valid?
     expect(@get_address.errors.full_messages).to include("Token can't be blank")
   end
+
+  it "user_idが空では登録できないこと" do
+    @get_address.user_id = nil
+    @get_address.valid?
+    expect(@get_address.errors.full_messages).to include("User can't be blank")
+  end
+
+  it "item_idが空では登録できないこと" do
+    @get_address.item_id = nil
+    @get_address.valid?
+    expect(@get_address.errors.full_messages).to include("Item can't be blank")
+  end
+
 
 end

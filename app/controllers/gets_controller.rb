@@ -1,8 +1,8 @@
 class GetsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_get_item, only: [:index, :create]
-  before_action :move_to_root, only: [:index]
-  before_action :sold_item, only: [:index]
+  before_action :move_to_root, only: [:index, :create]
+  before_action :sold_item, only: [:index, :create]
 
   def index
     @get_address = GetAddress.new

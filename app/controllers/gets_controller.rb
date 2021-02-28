@@ -2,7 +2,7 @@ class GetsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :move_to_root, only: [:index]
   before_action :sold_item, only: [:index]
-  before_action :set_get_item, only: [:index, :create]
+  before_action :set_get_item, only: [:index, :create, :move_to_root, :sold_item]
 
   def index
     @get_address = GetAddress.new
@@ -35,14 +35,12 @@ class GetsController < ApplicationController
   end
 
   def move_to_root
-    @item = Item.find(params[:item_id])
     if current_user.id == @item.user_id
       redirect_to root_path
     end
   end
 
   def sold_item
-    @item = Item.find(params[:item_id])
     if Get.exists?(@item.id)
       redirect_to root_path
     end
